@@ -1,0 +1,1 @@
+﻿Napisz program, który wczytuje dwie liczby A i B (jedna po drugiej). Program jako wynik wyświetli sumę tych liczb oraz informację, z ilu cyfr składa się wynik.
