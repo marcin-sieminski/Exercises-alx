@@ -2,9 +2,9 @@
 
 namespace P08PlayerHelper
 {
-    class Program
+    public class Program
     {
-        static void Main()
+        public static void Main()
         {
             var playerHelper = new PlayerHelper(DataSource.LocalFile);
             playerHelper.LoadData();
