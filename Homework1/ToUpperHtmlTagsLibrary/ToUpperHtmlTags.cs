@@ -35,8 +35,8 @@ namespace ToUpperHtmlTagsLibrary
             for (var i = 0; i < indexesToUpper.Count; i += 2)
             {
                 var lowerIndexValue = indexesToUpper[i];
-                var upperIndexValue = indexesToUpper[i + 1] - indexesToUpper[i] + 1;
-                var currentSlice = htmlSpan.Slice(lowerIndexValue, upperIndexValue);
+                var length = indexesToUpper[i + 1] - indexesToUpper[i] + 1;
+                var currentSlice = htmlSpan.Slice(lowerIndexValue, length);
 
                 for (var j = 0; j < currentSlice.Length; j++)
                 {

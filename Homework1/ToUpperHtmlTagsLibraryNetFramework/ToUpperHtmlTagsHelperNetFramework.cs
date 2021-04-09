@@ -22,7 +22,7 @@ namespace ToUpperHtmlTagsLibraryNetFramework
                 {
                     indexesToUpper.Add(i + 1);
                 }
-                else if (inputHtmlChars[i] == '>')
+                if (inputHtmlChars[i] == '>')
                 {
                     indexesToUpper.Add(i - 1);
                 }
@@ -31,7 +31,7 @@ namespace ToUpperHtmlTagsLibraryNetFramework
             for (var i = 0; i < indexesToUpper.Count; i += 2)
             {
                 var lowerIndexValue = indexesToUpper[i];
-                var upperIndexValue = indexesToUpper[i + 1] - indexesToUpper[i] + 1;
+                var upperIndexValue = indexesToUpper[i + 1];
 
                 for (var j = lowerIndexValue; j <= upperIndexValue; j++)
                 {
