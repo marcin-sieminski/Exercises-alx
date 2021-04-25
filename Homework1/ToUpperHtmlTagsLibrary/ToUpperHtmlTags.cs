@@ -6,7 +6,6 @@ namespace ToUpperHtmlTagsLibrary
 {
     public static class ToUpperHtmlTagsHelper
     {
-
         public static string ToUpperHtmlTags(string inputHtmlString)
         {
             var inputHtmlChars = new char[inputHtmlString.Length];
