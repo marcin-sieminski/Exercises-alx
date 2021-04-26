@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{DE227080-3EBC-46BC-A11A-75BEBC9BF59F}</ProjectGuid>
+    <ProjectGuid>{13625EC7-F64A-415E-AE3F-6A7BF83C8BAC}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>FirmaApp</RootNamespace>
-    <AssemblyName>FirmaApp</AssemblyName>
+    <RootNamespace>P05References</RootNamespace>
+    <AssemblyName>P05References</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -43,14 +43,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Faktura.cs" />
-    <Compile Include="Firma.cs" />
-    <Compile Include="KategoriaTowaru.cs" />
-    <Compile Include="Klient.cs" />
-    <Compile Include="Pracownik.cs" />
+    <Compile Include="Person.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Towar.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

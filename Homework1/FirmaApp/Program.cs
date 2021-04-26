@@ -6,10 +6,10 @@ namespace FirmaApp
     {
         static void Main()
         {
-            var firma = new Firma("Sukces");
+            var firma = new Firma{NazwaFirmy = "Sukces"};
 
-            firma.Zatrudnij(new Pracownik("Adam", "Abacki", "Warszawa"));
-            firma.Zatrudnij(new Pracownik("Anna", "Cabacka", "Piaseczno"));
+            firma.Zatrudnij(new Pracownik("Adam", "Abacki", "Warszawa", 2500M));
+            firma.Zatrudnij(new Pracownik("Anna", "Cabacka", "Piaseczno", 3500M));
 
             var klient1 = new Klient
                 {NazwaKlienta = "ABC", AdresKlienta = "Warszawa Puławska 1", TerminPłatnościFaktur = 30};
@@ -37,7 +37,7 @@ namespace FirmaApp
             Console.WriteLine("\nPracownicy:");
             foreach (var pracownik in firma.Pracownicy)
             {
-                Console.WriteLine($"{pracownik.Imię} {pracownik.Nazwisko}, {pracownik.Miasto}, data zatrudnienia: {pracownik.DataZatrudnienia.Date:d}");
+                Console.WriteLine($"{pracownik.ImięNazwisko}, {pracownik.Miasto}, data zatrudnienia: {pracownik.DataZatrudnienia.Date:d}, wynagrodzenie: {pracownik.Wynagrodzenie:C}");
             }
 
             Console.WriteLine($"\nIlość wystawionych faktur: {firma.Faktury.Count}");
@@ -47,7 +47,7 @@ namespace FirmaApp
                 Console.WriteLine($"Data wystawienia: {faktura.DataWystawienia.Date:d}");
                 Console.WriteLine($"Termin płatności: {faktura.DataPłatności.Date:d}");
                 Console.WriteLine($"Klient: {faktura.Klient.NazwaKlienta}");
-                Console.WriteLine($"Pracownik wystawiający: {faktura.PracownikWystawiającyFakturę.Imię} {faktura.PracownikWystawiającyFakturę.Nazwisko}");
+                Console.WriteLine($"Pracownik wystawiający: {faktura.PracownikWystawiającyFakturę.ImięNazwisko}");
                 Console.WriteLine("Pozycje na fakturze:");
                 foreach (var pozycjaFaktury in faktura.TowaryIlość)
                 {
