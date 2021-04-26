@@ -9,17 +9,22 @@ namespace FolderSynchronizationLibrary
         public string SecondFolderPath { get; set; }
         public string DestinationFolderPath { get; set; }
         public string[] FileNameExtensions { get; set; }
-        public List<FileSynch> Files { get; set; } = new List<FileSynch>();
+        public List<FileSynch> FilesSynch { get; set; } = new List<FileSynch>();
+        public List<FileSynch> FilesFirstFolder { get; set; } = new List<FileSynch>();
+        public List<FileSynch> FilesSecondFolder { get; set; } = new List<FileSynch>();
 
         public void SynchronizeFolders()
         {
             Directory.CreateDirectory(DestinationFolderPath);
-            ReadSynchFolder();
-            ReadSourceFolder(FirstFolderPath);
-            ReadSourceFolder(SecondFolderPath);
+            ReadFilesToList(DestinationFolderPath, FilesFirstFolder);
+            ReadFilesToList(FirstFolderPath, FilesSynch);
+            ReadFilesToList(SecondFolderPath, FilesSecondFolder);
+
+            SynchSourceFolder(FirstFolderPath, FilesFirstFolder);
+            SynchSourceFolder(SecondFolderPath, FilesSecondFolder);
         }
 
-        private void ReadSourceFolder(string folderPath)
+        private void SynchSourceFolder(string folderPath, List<FileSynch> filesList)
         {
             string[] filesInFolder = Directory.GetFiles(folderPath);
             foreach (var fileInFolder in filesInFolder)
@@ -32,7 +37,7 @@ namespace FolderSynchronizationLibrary
                 {
                     if (fileInFolder.EndsWith(fileNameExtension))
                     {
-                        foreach (var fileSynch in Files)
+                        foreach (var fileSynch in FilesSynch)
                         {
                             if (fileSynch.FileName == fileName)
                             {
@@ -59,22 +64,22 @@ namespace FolderSynchronizationLibrary
                                 LastWriteTime = fileInFolderLastWriteTime,
                                 FileContent = File.ReadAllText(fileInFolder)
                             };
-                            Files.Add(file);
+                            FilesSynch.Add(file);
                         }
                     }
                 }
             }
 
-            foreach (var fileSynch in Files)
+            foreach (var fileSynch in FilesSynch)
             {
                 File.WriteAllText(Path.Combine(DestinationFolderPath, fileSynch.FileName), fileSynch.FileContent);
                 File.SetLastWriteTime(Path.Combine(DestinationFolderPath, fileSynch.FileName), fileSynch.LastWriteTime);
             }
         }
 
-        private void ReadSynchFolder()
+        private void ReadFilesToList(string path, List<FileSynch> listOfFiles)
         {
-            string[] filesSynchFiles = Directory.GetFiles(DestinationFolderPath);
+            string[] filesSynchFiles = Directory.GetFiles(path);
 
             foreach (var fileInSynchFolder in filesSynchFiles)
             {
@@ -88,7 +93,7 @@ namespace FolderSynchronizationLibrary
                             LastWriteTime = File.GetLastWriteTime(fileInSynchFolder),
                             FileContent = File.ReadAllText(fileInSynchFolder)
                         };
-                        Files.Add(file);
+                        listOfFiles.Add(file);
                     }
                 }
             }
