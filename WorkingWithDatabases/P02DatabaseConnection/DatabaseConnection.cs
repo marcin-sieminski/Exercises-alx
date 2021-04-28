@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.IO;
 
 namespace P02DatabaseConnection
 {
@@ -7,16 +8,10 @@ namespace P02DatabaseConnection
     {
         private string _connectionString;
 
-        public DatabaseConnection(string address = "mssql4.webio.pl,2401", string databaseName = "tomasz1_zawodnicy", string userName = "tomasz1_alxalx", string password = "Alxalx!1")
-        {
-            _connectionString = "Data Source=" + address + ";Initial Catalog=" + databaseName + ";User ID=" + userName +
-                               ";Password=" + password;
-        }
-
         public DatabaseConnection()
         {
             _connectionString =
-                "Data Source=mssql4.webio.pl,2401;Initial Catalog=tomasz1_zawodnicy;User ID=tomasz1_alxalx;Password=Alxalx!1";
+                File.ReadAllText("..\\..\\..\\..\\alx_example\\connectionstring.txt");
         }
 
         public object[][] ExecuteSqlCommand(string sql)
