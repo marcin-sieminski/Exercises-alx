@@ -12,7 +12,7 @@ namespace P03DataAccessWinForms
 
         private void btnSend_Click(object sender, EventArgs e)
         {
-            var connection = new DatabaseConnection(tbServer.Text, tbDatabase.Text, tbUsername.Text, tbPassword.Text);
+            var connection = new DatabaseConnection();
 
             object[][] data = null;
 
